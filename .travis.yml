@@ -14,7 +14,7 @@ before_install:
   # builds the image, names it (can be anything - will only be used by Travis), make it use the Dockerfile.dev file 
   # (not PROD Dockerfile cuz this is for testing)
   - docker build -t morgenes23/php-docker -f .docker/Dockerfile .
-  - docker run morgenes23/php-docker
+  - docker run -d morgenes23/php-docker
 
 # commands necessary to run our test suite - Travis will be watching the output of these and if any get a
 # return status code other than 0, Travis will assume code is broken, need -- --coverage to make test script exit
