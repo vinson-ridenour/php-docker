@@ -13,7 +13,7 @@ services:
 before_install:
   # builds the image, names it (can be anything - will only be used by Travis), make it use the Dockerfile.dev file 
   # (not PROD Dockerfile cuz this is for testing)
-  - docker build -t morgenes23/php-docker /.docker
+  - docker build -t morgenes23/php-docker -f .docker .
   - docker run morgenes23/php-docker
 
 # commands necessary to run our test suite - Travis will be watching the output of these and if any get a
