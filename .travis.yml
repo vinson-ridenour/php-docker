@@ -2,6 +2,9 @@
 # our docker image, run tests, then report on whether tests failed or passed
 # hey Travis we need super user permissions to execute this build
 sudo: required
+
+language: php
+
 # travis needs to know we have the docker cli pre-installed, travis will install docker into our running container
 services:
   - docker
