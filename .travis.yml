@@ -10,13 +10,14 @@ services:
 before_install:
   # builds the image, names it (can be anything - will only be used by Travis), make it use the Dockerfile.dev file 
   # (not PROD Dockerfile cuz this is for testing)
-  - docker build -t morgenes23/php-docker -f Dockerfile.dev /.docker
+  - docker build -t morgenes23/php-docker /.docker
+  - docker run morgenes23/php-docker
 
 # commands necessary to run our test suite - Travis will be watching the output of these and if any get a
 # return status code other than 0, Travis will assume code is broken, need -- --coverage to make test script exit
 # cuz by default it will hang and wait for user input
-script:
-  - docker run morgenes23/php-docker npm run test -- --coverage
+#script:
+  #- docker run morgenes23/php-docker # npm run test -- --coverage
   # - script for running cucumber tests
 
 # this portion will tell Travis to deploy to AWS
@@ -26,14 +27,14 @@ deploy:
   # region depends on where you originally created EB instance (found in URL on EB dashboard - Docker-env.fznyypimpj.us-east-2.elasticbeanstalk.com)
   region: "us-east-2"
   # name of app, same name as created in EB dashboard (take it letter for letter)
-  app: "docker"
+  app: "php-docker"
   # environment name (Docker-env)
-  env: "Docker-env"
+  env: "PhpDocker-env"
   # when Travis gets all your code into 1 zip file, copies it into an S3 bucket which is bucket_name, found under Services top nav, go to S3, find region (us-east-2), get full name 
   bucket_name: "elasticbeanstalk-us-east-2-218183310905"
   # same as app name - folder won't be created in S3 until the first deploy
-  bucket_path: "docker"
-  # only deploy when master branch is pushed (not feature branch)
+  bucket_path: "php-docker"
+  # only deploy when master branch is pushed (not a feature branch)
   on:
     branch: master
   # search iam in AWS (Identity and Access Management), link API keys to TravisCI from AWS -> Users (will be used by 
