@@ -24,14 +24,14 @@ script:
 #script:
   #- docker run morgenes23/php-docker # npm run test -- --coverage
   # - script for running cucumber tests
-  
+
 before_deploy: "echo 'ready?'"
 # deploy to Rackspace
 deploy:
   provider: cloudfiles
   username: "vinsonridenour"
   api_key: "52961887654a4f09992e92b916130ac6"
-  region: "Northern Virginia (IAD)"
+  region: "iad"
   container: "laravel-docker"
   skip_cleanup: true
 
