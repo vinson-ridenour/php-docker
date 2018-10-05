@@ -26,14 +26,21 @@ script:
   # - script for running cucumber tests
 
 before_deploy: "echo 'ready?'"
-# deploy to Rackspace
+
+# deploy to Heroku
 deploy:
-  provider: cloudfiles
-  username: "vinsonridenour"
-  api_key: "52961887654a4f09992e92b916130ac6"
-  region: "iad"
-  container: "laravel-docker"
-  skip_cleanup: true
+  provider: heroku
+  api_key: "ffc64172-dc03-4947-98d0-47f9bc904358"
+  app: php-docker
+  
+# deploy to Rackspace
+# deploy:
+#   provider: cloudfiles
+#   username: "vinsonridenour"
+#   api_key: "52961887654a4f09992e92b916130ac6"
+#   region: "iad"
+#   container: "laravel-docker"
+#   skip_cleanup: true
 
 # this portion will tell Travis to deploy to AWS
 # deploy:
