@@ -11,4 +11,4 @@ RUN chown -R www-data:www-data /srv/app \
     && a2enmod rewrite
 
 # ElasticBeanstalk uses this for incoming traffic 
-EXPOSE 80
+# EXPOSE 80
