@@ -18,6 +18,10 @@ before_install:
 script:
   - docker run -d morgenes23/php-docker
 
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push morgenes23/php-docker
+
 # commands necessary to run our test suite - Travis will be watching the output of these and if any get a
 # return status code other than 0, Travis will assume code is broken, need -- --coverage to make test script exit
 # cuz by default it will hang and wait for user input
@@ -32,7 +36,7 @@ deploy:
   provider: heroku
   api_key: "ffc64172-dc03-4947-98d0-47f9bc904358"
   app: php-docker
-  
+
 # deploy to Rackspace
 # deploy:
 #   provider: cloudfiles
